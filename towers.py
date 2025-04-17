@@ -1,22 +1,22 @@
 class Tower:
     """
-        Represents a tower on the map. Towers are placed on the map and automatically
-        attack enemy balloons within their range.
+    Represents a tower on the map. Towers are placed on the map and automatically
+    attack enemy balloons within their range.
 
-        Attributes:
-        x (float): X-coordinate of the tower on the map.
-        y (float): Y-coordinate of the tower on the map.
-        type (str): The classifies the type of tower.
-        level (int): Current upgrade level of the tower.
-        range (float): Radius within which the tower can attack balloons.
-        cost (int): Purchase or upgrade cost of the tower.
-        damage (int): Amount of damage dealt per attack.
-        attack_speed (float): Number of attacks per second.
-        cooldown (float): Time until the tower can attack again.
+    Attributes:
+    x (float): X-coordinate of the tower on the map.
+    y (float): Y-coordinate of the tower on the map.
+    type (str): The classifies the type of tower.
+    level (int): Current upgrade level of the tower.
+    range (float): Radius within which the tower can attack balloons.
+    cost (int): Purchase or upgrade cost of the tower.
+    damage (int): Amount of damage dealt per attack.
+    attack_speed (float): Number of attacks per second.
+    cooldown (float): Time until the tower can attack again.
     """
 
     def init(self):
-        
+
         self.type = ""
         self._x_coord = 0
         self._y_coord = 0
@@ -29,7 +29,7 @@ class Tower:
 
     def find_target(self, balloons):
         """
-        Chooses a balloon to attack. By finding the balloons in range 
+        Chooses a balloon to attack. By finding the balloons in range
         and finding the one furtherest along the track.
 
         Args:
@@ -39,11 +39,12 @@ class Tower:
         """
         current_balloon = []
         for balloon in balloons:
+
             def in_range(balloon):
                 if balloon.current_waypoint > current_balloon:
                     current_balloon = balloon
-        return current_balloon 
-        
+
+        return current_balloon
 
     def in_range(self, target):
         """
@@ -51,7 +52,7 @@ class Tower:
 
         Args:
             target (list): contains the x and y coords of a ballon
-        Returns: 
+        Returns:
             boolean: represents whether the balloon is in range or not
         """
         dx = target[0] - self.x
@@ -59,7 +60,6 @@ class Tower:
         if (dx**2 + dy**2) ** 0.5 <= self.range:
             return True
         return False
-        
 
     def attack(self, balloons, current_time):
         """
@@ -69,10 +69,10 @@ class Tower:
         Args:
             balloons (list or dict)
         Returns:
-            Deals damage to a balloon 
+            Deals damage to a balloon
         """
 
-        if current_time % self._cooldown = 0:
+        if (current_time % self._cooldown) == 0:
             target = self.find_target(balloons)
             target.take_damage(self.damage)
 
