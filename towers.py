@@ -1,10 +1,5 @@
 class Tower:
     """
-    class that represents the various
-    """
-
-    def init(self):
-        """
         Represents a tower on the map. Towers are placed on the map and automatically
         attack enemy balloons within their range.
 
@@ -18,7 +13,10 @@ class Tower:
         damage (int): Amount of damage dealt per attack.
         attack_speed (float): Number of attacks per second.
         cooldown (float): Time until the tower can attack again.
-        """
+    """
+
+    def init(self):
+        
         self.type = ""
         self._x_coord = 0
         self._y_coord = 0
