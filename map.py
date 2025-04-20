@@ -3,6 +3,7 @@ Defines the game map and track system that both balloons and towers interact wit
 """
 
 import pygame
+import csv
 
 
 class Track:
@@ -33,3 +34,19 @@ class Track:
     def draw(self, screen):
         """Draw the track and path on screen"""
         pass  # Implementation details here
+
+
+def load_waypoints_from_csv(filename):
+    """
+    Loads waypoints from a CSV file and returns a list of (x, y) tuples.
+    """
+    waypoints = []
+    with open(filename, newline="") as csvfile:
+        reader = csv.reader(csvfile)
+        next(reader)  # skip header
+        for row in reader:
+            if len(row) >= 2:
+                x = float(row[0])
+                y = float(row[1])
+                waypoints.append((x, y))
+    return waypoints
